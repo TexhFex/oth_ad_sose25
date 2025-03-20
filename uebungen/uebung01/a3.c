@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 10
+#define MAX 30
 
 typedef struct {
     int rows;
@@ -55,12 +55,6 @@ void randomFillMatrix(Matrix* mat, int minVal, int maxVal) {
 
 Matrix add(const Matrix* A, const Matrix* B) {
     Matrix result;
-    if(A->rows != B->rows || A->cols != B->cols) {
-        printf("unterschiedliche dimensionen");
-        initMatrix(&result, 0, 0);
-        return result;
-    }
-
     initMatrix(&result, A->rows, A->cols);
     for(int i = 0; i < A->rows; i++) {
         for(int j = 0; j < A->cols; j++) {
@@ -72,14 +66,7 @@ Matrix add(const Matrix* A, const Matrix* B) {
 
 Matrix mult(const Matrix* A, const Matrix* B) {
     Matrix result;
-    if(A->cols != B->rows) {
-        printf("Falsche Dimensionen");
-        initMatrix(&result, 0, 0);
-        return result;
-    }
-
     initMatrix(&result, A->rows, B->cols);
-
     for(int i = 0; i < A->rows; i++) {
         for(int j = 0; j < B->cols; j++) {
             int sum = 0;
@@ -103,6 +90,8 @@ int main(void) {
 
     randomFillMatrix(&A, -5, 5);
     randomFillMatrix(&B, -5, 5);
+//    inputMatrix(&A);
+//    inputMatrix(&B);
 
     printf("Matrix A:\n");
     printMatrix(&A);
