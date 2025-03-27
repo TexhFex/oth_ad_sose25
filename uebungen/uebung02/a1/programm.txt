@@ -1,0 +1,13 @@
+; R0 = n (Eingabewert)
+; R1 = i (Zähler)
+; R2 = Summe
+; R3 = Differenz = n - i
+LOAD R1, 0
+LOAD R2, 0
+LOAD R2, 0
+LABEL loop
+ADD R2, R1
+ADD R1, %1
+SUB R3, R0, R1
+JNZ R3, loop
+ADD R2, R1
